@@ -9,13 +9,11 @@ let vInvCombi = vCombi.map((elt) => {
     return elt.slice().reverse();
 });
 
-// console.log(hCombi,hInvCombi)
 newNumber();
 updateDOM();
 function newNumber(){
     let rem=[]
     for(let i=0;i<16;i++){
-        // console.log(i)
         if(res[i]==undefined){
             rem.push(i)
         }
@@ -142,11 +140,10 @@ document.addEventListener("keyup",e=>{
             newNumber();
             updateDOM();
             if(testing){
-                updateHistory();
+                appendHistory(`${key}\n`)
+                updateHistory(res);
             }
         }
-        // newNumber();
-        // updateDOM();
         let playChance = checkUpdateChance();
         if (!playChance){
             alert("Is it over dude? nere chovve nokk!")

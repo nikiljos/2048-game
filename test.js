@@ -30,6 +30,10 @@ function updateHistory(fRes) {
     resHistory += "\n";
 }
 
+function appendHistory(text){
+    resHistory+=text
+}
+
 function downloadHistory() {
     var link = document.createElement("a");
     link.download = "result.csv";

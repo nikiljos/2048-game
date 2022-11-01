@@ -1,0 +1,32 @@
+.content{
+    max-width: 90vw;
+}
+
+label{
+    display: block;
+    font-size: 1.2rem;
+}
+
+.form-input{
+    padding: 10px 10px;
+}
+
+input{
+    width: 100%;
+    border: none;
+    outline: none;
+    margin: 10px 0;
+    padding: 10px;
+    background-color: rgba(127, 255, 212, 0.317);
+    font-size: 1.1rem;
+}
+
+/* input:focus{
+     border: 3px solid #ccc; 
+} */
+
+.btn-grp{
+    padding: 10px 0;
+    display: flex;
+    justify-content: center;
+}
