@@ -30,6 +30,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+      - name: Remove Test Files and set env to Prod
+        run: rm test.js && cp env.prod.js env.js
       - name: Setup Pages
         uses: actions/configure-pages@v2
       - name: Upload artifact

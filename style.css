@@ -1,5 +1,5 @@
 body{
-    background-color: aliceblue;
+    background-color: #edf2fb;
     font-family: sans-serif;
 }
 
@@ -26,5 +26,4 @@ body{
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-
 }
