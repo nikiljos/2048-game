@@ -1,0 +1,22 @@
+h1{
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.center{
+    text-align: center;
+}
+
+.score-grp{
+    padding: 10px;
+}
+
+.score-title{
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.score-val{
+    margin: 0;
+}
