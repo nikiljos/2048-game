@@ -42,9 +42,10 @@ function updateDOM(){
 }
 
 function merge(arr){
+    // console.log(arr)
     let change=false
     let len=0;
-    let res = [];
+    let res1 = [];
     let allUndef=true
     //shit all elemetns to end
     for (let i = 0; i < 4; i++) {
@@ -52,24 +53,25 @@ function merge(arr){
             allUndef=false
             // find last defined position
             len=i+1;
-            res.push(arr[i]);
+            res1.push(arr[i]);
         }
     }
-    if(res.length!=len||allUndef){
+    if(res1.length!=len||allUndef){
         change=true;
     }
-    let res2=[]
+    let res2=[];
     // add nearby elts with same value
     for(let i = 0; i <4; i++){
-        if(res[i]==res[i+1]&&res[i]!=undefined){
-            res2.push(res[i] * 2);
+        if(res1[i]==res1[i+1]&&res1[i]!=undefined){
+            res2.push(res1[i] * 2);
             change=true;
             i++;
         }
         else{
-            res2.push(res[i])
+            res2.push(res1[i])
         }
     }
+    console.log({arr,res2})
     return {
         fragment:res2,
         change
@@ -77,7 +79,7 @@ function merge(arr){
 }
 
 function updateSum(direction){
-    let tempRes=res;
+    let tempRes=res.slice();
     let change=false;
     let fullCombi;
     switch(direction){
@@ -137,6 +139,7 @@ document.addEventListener("keyup",e=>{
         let newRes=updateSum(direction);
         if(newRes.change){
             res=newRes.newResult;
+            console.log({res})
             newNumber();
             updateDOM();
             if(testing){

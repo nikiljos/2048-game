@@ -1,6 +1,6 @@
 let testInterval;
 let resHistory = "";
-function gameEndTest() {
+function autoPlay() {
     testInterval = setInterval(() => {
         let options = ["Down", "Up", "Right", "Left"];
         let key = options[Math.floor(Math.random() * options.length)];
