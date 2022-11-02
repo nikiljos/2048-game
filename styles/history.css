@@ -1,0 +1,30 @@
+table {
+  background-color: #ffffff;
+  box-shadow: 5px 5px 5px #888;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 13vh;
+}
+
+table,
+th,
+td {
+  border-collapse: collapse;
+  padding: 10px;
+}
+
+th,
+td {
+  /* border-bottom: 1px solid #dddddd; */
+  min-width: 20vw;
+  text-align: center;
+}
+
+tr:only-child {
+  background-color: aquamarine;
+  /* color: #000000; */
+}
+
+tr:nth-child(2n) {
+  background-color: #f3f3f3;
+}

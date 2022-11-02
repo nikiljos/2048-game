@@ -19,9 +19,22 @@ body{
     height: 2rem;
     line-height: 2rem;
     padding: 10px;
-    margin: 10px;
+    margin: 5px;
     text-align: center;
     border-radius: 10px;
     font-weight: 600;
     cursor: pointer;
+}
+
+.btn-grp{
+    padding: 10px 0;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.horizontal{
+    flex-direction: row;
+    flex-wrap: wrap;
 }

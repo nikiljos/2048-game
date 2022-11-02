@@ -10,10 +10,23 @@
 </head>
 <body>
 
-    <div class="container">
-        <div class="info">
-
-        </div>
+    <div class="main">
+        <!-- <div class="info"> -->
+            <div class="score-supergrp">
+                <div class="score-grp">
+                    <p class="score-title">Max No.</p>
+                    <p class="score-val">256</p>
+                </div>
+                <div class="score-grp">
+                    <p class="score-title">Time Elapsed</p>
+                    <p class="score-val">12:34</p>
+                </div>
+                <div class="score-grp">
+                    <p class="score-title">No. of Moves</p>
+                    <p class="score-val">50</p>
+                </div>
+            </div>
+        <!-- </div> -->
         <div class="game">
             <div class="box"></div>
             <div class="box"></div>
@@ -32,7 +45,19 @@
             <div class="box"></div>
             <div class="box"></div>
         </div>
+        <div class="keypad hide">
+            <div class="keyrow top">
+                <div class="key-box">⬆️</div>
+            </div>
+            <div class="keyrow bottom">
+                <div class="key-box">⬅️</div>
+                <div class="key-box">⬇️</div>
+                <div class="key-box">➡️</div>
+            </div>
+        </div>
     </div>
+
+    
 
     <script src="env.js"></script>
     <script src="scripts/init.js"></script>
