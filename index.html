@@ -15,12 +15,14 @@
             <h3>Add up the 2s till 2048</h3>
         </div>
         
-        <div class="btn big">Play Now!</div>
+        <div class="btn big" onclick="goto(`game`)">Play Now!</div>
         <div class="btn-grp">
-            <div class="btn">Set Player Name</div>
-            <div class="btn">How to play</div>
-            <div class="btn">Score History</div>
+            <div class="btn" onclick="goto(`name`)">Set Player Name</div>
+            <div class="btn" onclick="goto(`howto`)">How to play</div>
+            <div class="btn" onclick="goto(`history`)">Score History</div>
         </div>
     </div>
+
+    <script src="scripts/redirect.js"></script>
 </body>
 </html>
