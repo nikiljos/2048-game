@@ -12,34 +12,38 @@
         <div class="main">
             <div class="content">
                 <h1>How To Play!</h1>
-            <ul>
-                <li>
-                    User can move the numbers towards both sides in a row or a
-                    column using the arrow keys.
-                </li>
+                <ul>
+                    <li>
+                        User can move the numbers towards both sides in a row or a
+                        column using the arrow keys.
+                    </li>
 
-                <li>
-                    When same numbers in the clicked direction come together,
-                    they add up.
-                </li>
+                    <li>
+                        When same numbers in the clicked direction come together,
+                        they add up.
+                    </li>
 
-                <li>
-                    The game starts with a 2 inside one of the boxes and a 2
-                    will be added to one of the remaining boxes on every move.
-                </li>
+                    <li>
+                        The game starts with a 2 inside one of the boxes and a 2
+                        will be added to one of the remaining boxes on every move.
+                    </li>
 
-                <li>
-                    The user should reach the number 2048 in the minimum number
-                    of moves.
-                </li>
+                    <li>
+                        The user should reach the number 2048 in the minimum number
+                        of moves.
+                    </li>
 
-                <li>
-                    The game ends when either the user reaches 2048 or there are
-                    no more options of moving or adding up a new 2
-                </li>
-            </ul>
+                    <li>
+                        The game ends when either the user reaches 2048 or there are
+                        no more options of moving or adding up a new 2
+                    </li>
+                </ul>
             </div>
-            
+            <div class="btn-grp horizontal">
+                <div class="btn" onclick="goto(`index`)">Home</div>
+                <div class="btn" onclick="goto(`game`)">Start Playing</div>
+            </div>
         </div>
+        <script src="scripts/redirect.js"></script>
     </body>
 </html>
