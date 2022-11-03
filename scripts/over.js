@@ -17,7 +17,7 @@ if(winStatus=="true"){
 }
 
 let randomComment=comments[Math.floor(Math.random()*comments.length)]
-let userNickName="elon";
+let userNickName=localStorage.getItem("nickname");
 $comment.innerText=`${randomComment}, ${userNickName}`
 
 let seconds = Number(sessionStorage.getItem("time"));
