@@ -254,6 +254,7 @@ function setHistory(){
     } else {
         history = JSON.parse(prev);
     }
+    history=history.slice(0,9);
     //push to first index
     history.unshift(latestScore)
     let newHistory=JSON.stringify(history)
