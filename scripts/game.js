@@ -12,6 +12,8 @@ let vInvCombi = vCombi.map((elt) => {
     return elt.slice().reverse();
 });
 
+let gameOverStatus=false;
+
 let bgm=new Audio("assets/bgm.mp3")
 bgm.loop=true;
 
@@ -20,7 +22,7 @@ let cheer = new Audio("assets/cheer.mp3");
 sessionStorage.setItem("win", false);
 
 if(localStorage.getItem("nickname")==null){
-    if(confirm("Please set your name before the game start!")){
+    if(confirm("Please set your name before the game starts!")){
         window.location.href="name.html";
     }
     else{
@@ -214,6 +216,9 @@ function checkUpdateChance(){
 }
 
 function playMove(direction){
+    if(gameOverStatus){
+        return;
+    }
     console.clear();
     addMove();
     let newRes = updateSum(direction);
@@ -265,6 +270,7 @@ function endGame(){
     if(testing){
         downloadHistory();
     }
+    gameOverStatus=true;
     setHistory();
     window.location.href="over.html"
 }
