@@ -10,8 +10,28 @@ let vInvCombi = vCombi.map((elt) => {
     return elt.slice().reverse();
 });
 
+let color = {
+    2: "#E5FFF6",
+    4: "#CCFFEE",
+    8: "#B2FFE5",
+    16: "#99FFDC",
+    32: "#7FFFD4",
+    64: "#66FFCB",
+    128: "#4CFFC3",
+    256: "#32FFBA",
+    512: "#19FFB2",
+    1024: "#00FFA9",
+    2048: "#00FFA9",
+    default:"#ffffff"
+};
+
+let moves=0;
+let maxNum=2;
+
 newNumber();
 updateDOM();
+setScore(maxNum, time, moves);
+
 function newNumber(){
     let rem=[]
     for(let i=0;i<16;i++){
@@ -35,11 +55,22 @@ function updateDOM(){
         let val=res[i]
         if(val!=undefined){
             elt.innerText=val
+            elt.style.backgroundColor=color[val]
         }
         else{
             elt.innerText="";
+            elt.style.backgroundColor = color["default"];
         }
     })    
+}
+
+function addMove(){
+    if(moves==0){
+        startTimer();
+    }
+    let $moves=document.getElementById("moves")
+    moves++;
+    $moves.innerText=moves;
 }
 
 function merge(arr){
@@ -120,6 +151,24 @@ function updateSum(direction){
     }
 }
 
+function updateMax(){
+    let tempMax=maxNum;
+    res.forEach(elt=>{
+        if(elt>tempMax){
+            tempMax=elt;
+        }
+    })
+    if(tempMax>maxNum){
+
+        maxNum=tempMax;
+        setScore(maxNum,time,moves);
+
+        let $maxNum = document.getElementById("max-num");
+        $maxNum.innerText = maxNum;
+    }
+    
+}
+
 function checkUpdateChance(){
 
     let options = ["Down", "Up", "Right","Left"];
@@ -131,27 +180,54 @@ function checkUpdateChance(){
     return chance
 }
 
+function playMove(direction){
+    console.clear();
+    addMove();
+    let newRes = updateSum(direction);
+    if (newRes.change) {
+        res = newRes.newResult;
+        console.log({ res });
+        newNumber();
+        updateMax();
+        updateDOM();
+        if (testing) {
+            appendHistory(`${getTimeString(time)},${moves},${direction}\n`);
+            updateHistory(res);
+        }
+    }
+    let playChance = checkUpdateChance();
+    if (!playChance) {
+        // alert("It is over dude🥲 nere chovve nokk!");
+        endGame();
+    }
+    console.log("Play Chance: ", playChance);
+}
+
+function setScore(max,timeTaken,movesTaken){
+    sessionStorage.setItem("moves",movesTaken);
+    sessionStorage.setItem("time", timeTaken);
+    sessionStorage.setItem("max", max);
+}
+
+function endGame(){
+    if(testing){
+        downloadHistory();
+    }
+    window.location.href="over.html"
+}
+
+//listen to arrow key press
 document.addEventListener("keyup",e=>{
     let key=e.key;
     if(key.startsWith("Arrow")){
-        console.clear();
         let direction=key.substring(5)
-        // console.log()
-        let newRes=updateSum(direction);
-        if(newRes.change){
-            res=newRes.newResult;
-            console.log({res})
-            newNumber();
-            updateDOM();
-            if(testing){
-                appendHistory(`${key}\n`)
-                updateHistory(res);
-            }
-        }
-        let playChance = checkUpdateChance();
-        if (!playChance){
-            alert("Is it over dude? nere chovve nokk!")
-        }
-        console.log("Play Chance: ", playChance);
+        playMove(direction); 
     }
 })
+
+document.getElementById("keypad").onclick=(e)=>{
+    if(e.target.matches(".key-box")){
+        let direction=e.target.dataset.dir;
+        playMove(direction); 
+    }
+}

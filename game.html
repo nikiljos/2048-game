@@ -15,19 +15,19 @@
             <div class="score-supergrp">
                 <div class="score-grp">
                     <p class="score-title">Max No.</p>
-                    <p class="score-val">256</p>
+                    <p class="score-val" id="max-num">2</p>
                 </div>
                 <div class="score-grp">
                     <p class="score-title">Time Elapsed</p>
-                    <p class="score-val">12:34</p>
+                    <p class="score-val" id="timer">00:00</p>
                 </div>
                 <div class="score-grp">
                     <p class="score-title">No. of Moves</p>
-                    <p class="score-val">50</p>
+                    <p class="score-val" id="moves">0</p>
                 </div>
             </div>
         <!-- </div> -->
-        <div class="game">
+        <div class="game" id="game">
             <div class="box"></div>
             <div class="box"></div>
             <div class="box"></div>
@@ -45,24 +45,21 @@
             <div class="box"></div>
             <div class="box"></div>
         </div>
-        <div class="keypad hide">
+        <div class="keypad hide" id="keypad">
             <div class="keyrow top">
-                <div class="key-box">⬆️</div>
+                <div class="key-box" data-dir="Up">⬆️</div>
             </div>
             <div class="keyrow bottom">
-                <div class="key-box">⬅️</div>
-                <div class="key-box">⬇️</div>
-                <div class="key-box">➡️</div>
+                <div class="key-box" data-dir="Left">⬅️</div>
+                <div class="key-box" data-dir="Down">⬇️</div>
+                <div class="key-box" data-dir="Right">➡️</div>
             </div>
         </div>
     </div>
 
-    
-
     <script src="env.js"></script>
     <script src="scripts/init.js"></script>
+    <script src="scripts/timer.js"></script>
     <script src="scripts/game.js"></script>
-   
-    
 </body>
 </html>
