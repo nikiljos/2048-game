@@ -13,6 +13,11 @@ body{
     height: 90vh;
 }
 
+.extend{
+    height: initial;
+    min-height: 90vh;
+}
+
 .btn{
     background-color: aquamarine;
     width: 150px;

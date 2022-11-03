@@ -28,3 +28,12 @@ tr:only-child {
 tr:nth-child(2n) {
   background-color: #f3f3f3;
 }
+
+#nothing-prompt{
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.hide{
+  display: none;
+}

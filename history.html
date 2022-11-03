@@ -9,50 +9,24 @@
         <title>Play 2048!</title>
     </head>
     <body>
-        <div class="main">
+        <div class="main extend">
             <table>
                 <thead>
                     <th>Max No.</th>
                     <th>No. of Moves</th>
                     <th>Time Elapsed</th>
+                    <!-- <th>Game Time</th> -->
                 </thead>
-                <tr>
-                    <td>256</td>
-                    <td>50</td>
-                    <td>12:34</td>
-                </tr>
-                <tr>
-                    <td>256</td>
-                    <td>50</td>
-                    <td>12:34</td>
-                </tr>
-                <tr>
-                    <td>256</td>
-                    <td>50</td>
-                    <td>12:34</td>
-                </tr>
-                <tr>
-                    <td>256</td>
-                    <td>50</td>
-                    <td>12:34</td>
-                </tr>
-                <tr>
-                    <td>256</td>
-                    <td>50</td>
-                    <td>12:34</td>
-                </tr>
-                <tr>
-                    <td>256</td>
-                    <td>50</td>
-                    <td>12:34</td>
-                </tr>
             </table>
+            <div class="hide" id="nothing-prompt">Start playing to view your History!</div>
             <div class="btn-grp horizontal">
                 <div class="btn" onclick="goto(`game`)">Play Again!</div>
                 <div class="btn" onclick="goto(`index`)">Home</div>
             </div>
         </div>
 
+        <script src="scripts/helper.js"></script>
+        <script src="scripts/history.js"></script>
         <script src="scripts/redirect.js"></script>
     </body>
 </html>

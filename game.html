@@ -10,7 +10,7 @@
 </head>
 <body>
 
-    <div class="main">
+    <div class="main extend">
         <!-- <div class="info"> -->
             <div class="score-supergrp">
                 <div class="score-grp">
@@ -45,20 +45,27 @@
             <div class="box"></div>
             <div class="box"></div>
         </div>
-        <div class="keypad hide" id="keypad">
+        
+        <div class="keypad" id="keypad">
             <div class="keyrow top">
-                <div class="key-box" data-dir="Up">⬆️</div>
+                <div class="key-box sq-box" data-dir="Up">⬆️</div>
             </div>
             <div class="keyrow bottom">
-                <div class="key-box" data-dir="Left">⬅️</div>
-                <div class="key-box" data-dir="Down">⬇️</div>
-                <div class="key-box" data-dir="Right">➡️</div>
+                <div class="key-box sq-box" data-dir="Left">⬅️</div>
+                <div class="key-box sq-box" data-dir="Down">⬇️</div>
+                <div class="key-box sq-box" data-dir="Right">➡️</div>
             </div>
+        </div>
+        <div class="keyrow" id="act-grp">
+            <div class="act-box sq-box" id="keypad-toggle"><img src="assets/keyboard.png" alt=""></div>
+            <div class="act-box sq-box" id="replay"><img src="assets/restart.png" alt=""></div>
+            <div class="act-box sq-box" id="music-toggle"><img src="assets/speaker.png" alt="" id="music-img"></div>
         </div>
     </div>
 
     <script src="env.js"></script>
     <script src="scripts/init.js"></script>
+    <script src="scripts/helper.js"></script>
     <script src="scripts/timer.js"></script>
     <script src="scripts/game.js"></script>
 </body>

@@ -1,3 +1,5 @@
+let endNum=2048;
+
 let res=new Array(16);
 let hCombi=[[0,1,2,3],[4,5,6,7],[8,9,10,11],[12,13,14,15]];
 let vCombi=[[0,4,8,12],[1,5,9,13],[2,6,10,14],[3,7,11,15]];
@@ -9,6 +11,22 @@ let hInvCombi=hCombi.map(elt=>{
 let vInvCombi = vCombi.map((elt) => {
     return elt.slice().reverse();
 });
+
+let bgm=new Audio("assets/bgm.mp3")
+bgm.loop=true;
+
+let cheer = new Audio("assets/cheer.mp3");
+
+sessionStorage.setItem("win", false);
+
+if(localStorage.getItem("nickname")==null){
+    if(confirm("Please set your name before the game start!")){
+        window.location.href="name.html";
+    }
+    else{
+        window.location.href="index.html"
+    }
+}
 
 let color = {
     2: "#E5FFF6",
@@ -27,6 +45,14 @@ let color = {
 
 let moves=0;
 let maxNum=2;
+let startTime=new Date();
+
+let latestScore={
+    startTime,
+    moves,
+    maxNum,
+    time
+}
 
 newNumber();
 updateDOM();
@@ -160,11 +186,18 @@ function updateMax(){
     })
     if(tempMax>maxNum){
 
+        cheer.play();
+
         maxNum=tempMax;
         setScore(maxNum,time,moves);
 
         let $maxNum = document.getElementById("max-num");
         $maxNum.innerText = maxNum;
+
+        if(maxNum==endNum){
+            sessionStorage.setItem("win", true);
+            endGame();
+        }
     }
     
 }
@@ -207,12 +240,31 @@ function setScore(max,timeTaken,movesTaken){
     sessionStorage.setItem("moves",movesTaken);
     sessionStorage.setItem("time", timeTaken);
     sessionStorage.setItem("max", max);
+
+    latestScore.maxNum=max;
+    latestScore.moves=movesTaken;
+    latestScore.time=timeTaken;
+}
+
+function setHistory(){
+    let prev=localStorage.getItem("history")
+    let history;
+    if (prev == null || prev.length < 10) {
+        history = new Array();
+    } else {
+        history = JSON.parse(prev);
+    }
+    //push to first index
+    history.unshift(latestScore)
+    let newHistory=JSON.stringify(history)
+    localStorage.setItem("history",newHistory)
 }
 
 function endGame(){
     if(testing){
         downloadHistory();
     }
+    setHistory();
     window.location.href="over.html"
 }
 
@@ -220,8 +272,16 @@ function endGame(){
 document.addEventListener("keyup",e=>{
     let key=e.key;
     if(key.startsWith("Arrow")){
+        e.preventDefault();
         let direction=key.substring(5)
         playMove(direction); 
+    }
+})
+
+//prevent scroll on space and arrow keys
+document.addEventListener("keydown",e=>{
+    if(e.key.startsWith("Arrow")||e.key==" "){
+        e.preventDefault();
     }
 })
 
@@ -231,3 +291,33 @@ document.getElementById("keypad").onclick=(e)=>{
         playMove(direction); 
     }
 }
+
+document.getElementById("keypad-toggle").onclick=()=>{
+    let $keypad=document.getElementById("keypad");
+    let currentKeypad = getComputedStyle($keypad).display;
+    //adding hide class doesn't work as it conflicts with touchscreen media query
+    if(currentKeypad=="block"){
+        $keypad.style.display="none"
+    }
+    else{
+        $keypad.style.display = "block";
+    }
+}
+
+document.getElementById("music-toggle").onclick=()=>{
+    let $musicImg=document.getElementById("music-img")
+    if(bgm.paused){
+        bgm.play();
+        $musicImg.setAttribute("src","assets/mute.png");
+    }
+    else{
+        bgm.pause();
+        $musicImg.setAttribute("src", "assets/speaker.png");
+    }
+}
+
+document.getElementById("replay").onclick = () => {
+    if(confirm("Are you sure you want to restart the game?")){
+        window.location.reload();
+    }
+};

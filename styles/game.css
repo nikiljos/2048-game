@@ -9,10 +9,9 @@
     grid-template-columns: repeat(4,minmax(0,1fr));
     row-gap: 10px;
     column-gap: 10px;
-    
 }
 
-.box,.key-box{
+.box,.sq-box{
     width: 80px;
     height: 80px;
     background-color: #ffffff;
@@ -44,15 +43,35 @@
     margin: 0;
 }
 
+.keypad{
+    margin-top: 20px;
+    display: none;
+}
+
 .keyrow{
     display: flex;
     justify-content: center;
 }
 
-.key-box{
+.sq-box{
     margin: 5px;
     width: 60px;
     height: 60px;
+    background-color: rgba(127, 255, 212, 0.618);
+    font-size: 1.5rem;
+    border-radius: 8px;
+}
+
+.sq-box img{
+    width: 80%;
+}
+
+#act-grp{
+    margin-top: 20px;
+}
+.act-box{
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 .hide{
