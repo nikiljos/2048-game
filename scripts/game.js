@@ -299,16 +299,23 @@ document.getElementById("keypad").onclick=(e)=>{
     }
 }
 
+let $keypadIcon=document.getElementById("keypad-icon")
 document.getElementById("keypad-toggle").onclick=()=>{
     let $keypad=document.getElementById("keypad");
     let currentKeypad = getComputedStyle($keypad).display;
     //adding hide class doesn't work as it conflicts with touchscreen media query
     if(currentKeypad=="block"){
         $keypad.style.display="none"
+        $keypadIcon.setAttribute("src", "assets/keyboard.png");
     }
     else{
         $keypad.style.display = "block";
+        $keypadIcon.setAttribute("src", "assets/keyhide.png");
     }
+}
+
+if(window.matchMedia("(hover: none)").matches){
+    $keypadIcon.setAttribute("src","assets/keyhide.png")
 }
 
 document.getElementById("music-toggle").onclick=()=>{
@@ -326,5 +333,11 @@ document.getElementById("music-toggle").onclick=()=>{
 document.getElementById("replay").onclick = () => {
     if(confirm("Are you sure you want to restart the game?")){
         window.location.reload();
+    }
+};
+
+document.getElementById("home").onclick = () => {
+    if (confirm("Are you sure you want to stop playing and go home?")) {
+        window.location.href="index.html";
     }
 };
