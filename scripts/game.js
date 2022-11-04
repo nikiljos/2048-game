@@ -7,7 +7,7 @@ let vCombi=[[0,4,8,12],[1,5,9,13],[2,6,10,14],[3,7,11,15]];
 let hInvCombi=hCombi.map(elt=>{
     return elt.slice().reverse();
 })
-// console.log({hCombi,hInvCombi})
+
 let vInvCombi = vCombi.map((elt) => {
     return elt.slice().reverse();
 });
@@ -72,7 +72,6 @@ function newNumber(){
     }
     if(rem.length>0){
         let randPos = rem[Math.floor(Math.random() * rem.length)];
-        // console.log("New Number",rem.length, randPos);
         res[randPos] = 2;
     }
 }
@@ -102,7 +101,6 @@ function addMove(){
 }
 
 function merge(arr){
-    // console.log(arr)
     let change=false
     let len=0;
     let res1 = [];
@@ -131,7 +129,6 @@ function merge(arr){
             res2.push(res1[i])
         }
     }
-    // console.log({arr,res2})
     return {
         fragment:res2,
         change
@@ -168,7 +165,6 @@ function updateSum(direction){
         if(newRes.change){
             change=true
         };
-        // console.log(newResFragment,res)
         combi.forEach((elt,i)=>{
             tempRes[elt] = newResFragment[i];
         })
@@ -209,7 +205,6 @@ function checkUpdateChance(){
     let options = ["Down", "Up", "Right","Left"];
     let chance=options.some(direction=>{
         let update = updateSum(direction);
-        // console.log("Chance Check: ",direction,update);
         return update.change
     })
     return chance
@@ -219,13 +214,11 @@ function playMove(direction){
     if(gameOverStatus){
         return;
     }
-    // console.clear();
     keyColor(direction);
     addMove();
     let newRes = updateSum(direction);
     if (newRes.change) {
         res = newRes.newResult;
-        // console.log({ res });
         newNumber();
         updateMax();
         updateDOM();
@@ -236,10 +229,8 @@ function playMove(direction){
     }
     let playChance = checkUpdateChance();
     if (!playChance) {
-        // alert("It is over dude🥲 nere chovve nokk!");
         endGame();
     }
-    // console.log("Play Chance: ", playChance);
 }
 
 async function keyColor(direction){
@@ -305,10 +296,8 @@ document.addEventListener("keydown",e=>{
 })
 
 document.getElementById("keypad").onclick=(e)=>{
-    // console.log(e.target.matches(".key-box img"));
     if(e.target.matches(".key-box img")){
         let direction=e.target.parentElement.dataset.dir;
-        // console.log(direction)
         playMove(direction); 
     }
 }
