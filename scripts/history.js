@@ -1,10 +1,12 @@
 let $table=document.querySelector("table");
+let $clearHistory=document.getElementById("clear-history")
 
 let prev = localStorage.getItem("history");
 let history;
 if (prev == null||prev.length<10) {
     history = new Array();
     document.getElementById("nothing-prompt").classList.remove("hide");
+    $clearHistory.style.display="none";
 } else {
     history = JSON.parse(prev);
 }
@@ -24,3 +26,10 @@ history.forEach(elt=>{
     $row.append($maxNum,$moves,$time);
     $table.append($row)
 })
+
+$clearHistory.onclick=()=>{
+    if(confirm("Are you sure you want to clear your history?")){
+        localStorage.removeItem("history");
+        window.location.reload()
+    }
+}

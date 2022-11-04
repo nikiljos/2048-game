@@ -11,7 +11,7 @@ let comments=[
 ]
 
 let winStatus = sessionStorage.getItem("win");
-console.log(winStatus)
+// console.log(winStatus)
 if(winStatus=="true"){
     $status.innerText="You Won 🎉"
 }

@@ -1,9 +1,7 @@
 table {
   background-color: #ffffff;
   box-shadow: 5px 5px 5px #888;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 13vh;
+  margin: 40px 0 20px 0;
 }
 
 table,
@@ -15,14 +13,12 @@ td {
 
 th,
 td {
-  /* border-bottom: 1px solid #dddddd; */
   min-width: 20vw;
   text-align: center;
 }
 
 tr:only-child {
   background-color: aquamarine;
-  /* color: #000000; */
 }
 
 tr:nth-child(2n) {
@@ -32,6 +28,7 @@ tr:nth-child(2n) {
 #nothing-prompt{
   font-size: 1.5rem;
   font-weight: 700;
+  text-align: center;
 }
 
 .hide{

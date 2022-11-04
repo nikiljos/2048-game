@@ -16,7 +16,7 @@ function stopTesting() {
 }
 
 function updateHistory(fRes) {
-    console.log(fRes);
+    // console.log(fRes);
     hCombi.forEach((elt) => {
         elt.forEach((pos) => {
             let val = fRes[pos];

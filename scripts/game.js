@@ -19,6 +19,9 @@ bgm.loop=true;
 
 let cheer = new Audio("assets/cheer.mp3");
 
+let $keypadIcon = document.getElementById("keypad-icon");
+let keypadVisibility=false;
+
 sessionStorage.setItem("win", false);
 
 if(localStorage.getItem("nickname")==null){
@@ -67,12 +70,9 @@ function newNumber(){
             rem.push(i)
         }
     }
-    if(rem.length==0){
-        console.log("Max filled")
-    }
-    else{
+    if(rem.length>0){
         let randPos = rem[Math.floor(Math.random() * rem.length)];
-        console.log("New Number",rem.length, randPos);
+        // console.log("New Number",rem.length, randPos);
         res[randPos] = 2;
     }
 }
@@ -209,7 +209,7 @@ function checkUpdateChance(){
     let options = ["Down", "Up", "Right","Left"];
     let chance=options.some(direction=>{
         let update = updateSum(direction);
-        console.log("Chance Check: ",direction,update);
+        // console.log("Chance Check: ",direction,update);
         return update.change
     })
     return chance
@@ -219,12 +219,13 @@ function playMove(direction){
     if(gameOverStatus){
         return;
     }
-    console.clear();
+    // console.clear();
+    keyColor(direction);
     addMove();
     let newRes = updateSum(direction);
     if (newRes.change) {
         res = newRes.newResult;
-        console.log({ res });
+        // console.log({ res });
         newNumber();
         updateMax();
         updateDOM();
@@ -238,7 +239,18 @@ function playMove(direction){
         // alert("It is over dude🥲 nere chovve nokk!");
         endGame();
     }
-    console.log("Play Chance: ", playChance);
+    // console.log("Play Chance: ", playChance);
+}
+
+async function keyColor(direction){
+    if(!keypadVisibility){
+        return
+    }
+    let $key = document.querySelector(`.key-box[data-dir="${direction}"]`);
+    $key.style.backgroundColor="#fefefe"
+    setTimeout(()=>{
+       $key.style.backgroundColor = ""; 
+    },150)
 }
 
 function setScore(max,timeTaken,movesTaken){
@@ -293,28 +305,32 @@ document.addEventListener("keydown",e=>{
 })
 
 document.getElementById("keypad").onclick=(e)=>{
-    if(e.target.matches(".key-box")){
-        let direction=e.target.dataset.dir;
+    // console.log(e.target.matches(".key-box img"));
+    if(e.target.matches(".key-box img")){
+        let direction=e.target.parentElement.dataset.dir;
+        // console.log(direction)
         playMove(direction); 
     }
 }
 
-let $keypadIcon=document.getElementById("keypad-icon")
 document.getElementById("keypad-toggle").onclick=()=>{
     let $keypad=document.getElementById("keypad");
     let currentKeypad = getComputedStyle($keypad).display;
     //adding hide class doesn't work as it conflicts with touchscreen media query
     if(currentKeypad=="block"){
         $keypad.style.display="none"
+        keypadVisibility=false;
         $keypadIcon.setAttribute("src", "assets/keyboard.png");
     }
     else{
         $keypad.style.display = "block";
+        keypadVisibility=true;
         $keypadIcon.setAttribute("src", "assets/keyhide.png");
     }
 }
 
 if(window.matchMedia("(hover: none)").matches){
+    keypadVisibility=true;
     $keypadIcon.setAttribute("src","assets/keyhide.png")
 }
 
