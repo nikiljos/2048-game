@@ -1,6 +1,8 @@
 let endNum=2048;
 
 let res=new Array(16);
+
+// possible combinations in 4 directions
 let hCombi=[[0,1,2,3],[4,5,6,7],[8,9,10,11],[12,13,14,15]];
 let vCombi=[[0,4,8,12],[1,5,9,13],[2,6,10,14],[3,7,11,15]];
 
@@ -24,6 +26,7 @@ let keypadVisibility=false;
 
 sessionStorage.setItem("win", false);
 
+//prompt to set nickname if not set
 if(localStorage.getItem("nickname")==null){
     if(confirm("Please set your name before the game starts!")){
         window.location.href="name.html";
@@ -59,10 +62,12 @@ let latestScore={
     time
 }
 
+//add an initial 2, update dom and score
 newNumber();
 updateDOM();
 setScore(maxNum, time, moves);
 
+//add a new number if there are remaining spaces
 function newNumber(){
     let rem=[]
     for(let i=0;i<16;i++){
@@ -76,6 +81,7 @@ function newNumber(){
     }
 }
 
+//update the grid content with current value of res array
 function updateDOM(){
     let box=document.querySelectorAll(".box")
     box.forEach((elt,i)=>{
@@ -91,6 +97,7 @@ function updateDOM(){
     })    
 }
 
+//move counter
 function addMove(){
     if(moves==0){
         startTimer();
@@ -100,6 +107,7 @@ function addMove(){
     $moves.innerText=moves;
 }
 
+// process merge of a singler row/col
 function merge(arr){
     let change=false
     let len=0;
@@ -135,6 +143,7 @@ function merge(arr){
     };
 }
 
+//find out the movement result in the given direction
 function updateSum(direction){
     let tempRes=res.slice();
     let change=false;
@@ -175,6 +184,7 @@ function updateSum(direction){
     }
 }
 
+//update the max value reached if there is a change
 function updateMax(){
     let tempMax=maxNum;
     res.forEach(elt=>{
@@ -200,6 +210,7 @@ function updateMax(){
     
 }
 
+//check new update possibility after each move
 function checkUpdateChance(){
 
     let options = ["Down", "Up", "Right","Left"];
@@ -210,6 +221,7 @@ function checkUpdateChance(){
     return chance
 }
 
+//initiate number movements based on input direction 
 function playMove(direction){
     if(gameOverStatus){
         return;
@@ -233,6 +245,7 @@ function playMove(direction){
     }
 }
 
+//change onscreen keycolor to white while clicking the arrows
 async function keyColor(direction){
     if(!keypadVisibility){
         return
@@ -244,6 +257,7 @@ async function keyColor(direction){
     },150)
 }
 
+//update score in session storage when a new number id reached
 function setScore(max,timeTaken,movesTaken){
     sessionStorage.setItem("moves",movesTaken);
     sessionStorage.setItem("time", timeTaken);
@@ -254,6 +268,7 @@ function setScore(max,timeTaken,movesTaken){
     latestScore.time=timeTaken;
 }
 
+// update history when game ends
 function setHistory(){
     let prev=localStorage.getItem("history")
     let history;
@@ -269,6 +284,7 @@ function setHistory(){
     localStorage.setItem("history",newHistory)
 }
 
+//on game end, set history and reditrect
 function endGame(){
     if(testing){
         downloadHistory();
@@ -295,6 +311,7 @@ document.addEventListener("keydown",e=>{
     }
 })
 
+//trigger move handler on arrow key press
 document.getElementById("keypad").onclick=(e)=>{
     if(e.target.matches(".key-box img")){
         let direction=e.target.parentElement.dataset.dir;
@@ -302,6 +319,7 @@ document.getElementById("keypad").onclick=(e)=>{
     }
 }
 
+//trigger  move handler in onscreen key press
 document.getElementById("keypad-toggle").onclick=()=>{
     let $keypad=document.getElementById("keypad");
     let currentKeypad = getComputedStyle($keypad).display;
@@ -318,11 +336,13 @@ document.getElementById("keypad-toggle").onclick=()=>{
     }
 }
 
+//change keypad trigger logo to hide in touch devices
 if(window.matchMedia("(hover: none)").matches){
     keypadVisibility=true;
     $keypadIcon.setAttribute("src","assets/keyhide.png")
 }
 
+//bgm mute and unmute
 document.getElementById("music-toggle").onclick=()=>{
     let $musicImg=document.getElementById("music-img")
     if(bgm.paused){
@@ -335,12 +355,14 @@ document.getElementById("music-toggle").onclick=()=>{
     }
 }
 
+//game restart button click handler
 document.getElementById("replay").onclick = () => {
     if(confirm("Are you sure you want to restart the game?")){
         window.location.reload();
     }
 };
 
+//go home button click handler
 document.getElementById("home").onclick = () => {
     if (confirm("Are you sure you want to stop playing and go home?")) {
         window.location.href="index.html";

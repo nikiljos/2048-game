@@ -13,6 +13,7 @@ if(nickName!=null){
     $userName.value=userName
 }
 
+//set name and nickname to localstorage on clicking submit
 $submit.onclick=()=>{
     let nickNameInput=$nickName.value;
     let userNameInput=$userName.value;
