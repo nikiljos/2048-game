@@ -9,7 +9,7 @@
 
 ### How to run locally?
 Create a file named `env.js` and copy the contents of `env.prod.js` to it.  
-You can set `testing=true` if u need to use the test functions
+You can set `testing=true` if you need to use the test functions.
 
 ### References
 The game is based on the 2048 game originally designed by Gabriele Cirulli  
