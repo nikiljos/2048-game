@@ -1,3 +1,6 @@
+// The game is based on the 2048 game
+// https://en.wikipedia.org/wiki/2048_(video_game)
+
 let endNum=2048;
 
 let res=new Array(16);
